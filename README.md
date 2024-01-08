@@ -2,9 +2,7 @@ This is the e_comm website with fully functionality
 
 
 if you access this repo plese follow this step 
-for login 
-in this code i used auth0 login 
-so you only login with google 
+
 
 for start the website 
 step 1:-
