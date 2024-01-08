@@ -36,7 +36,7 @@ const Navbar = () => {
                                     href="/">
                                     <i className="fa fa-fw fa-cart-arrow-down text-dark mr-1 fs-4"></i>
                                     <span className="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">
-                                        {isAuthenticated?data.cart.length:0}
+                                        {data.cart.length}
                                     </span>
                                 </Link>
                                 <div className="dropdown">
