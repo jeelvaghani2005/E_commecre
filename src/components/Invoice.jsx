@@ -2,16 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-
+import { getcart } from "../redux/api/api";
 
 const Invoice = () => {
+    const dispatch = useDispatch();
 
     const navigate = useNavigate();
-    const [val, setval] = useState({})
+    const [val, setval] = useState({});
     const cart = useSelector((state) => state.product.cart);
 
     useEffect(() => {
-        const userCookie = Cookies.get('user');
+        dispatch(getcart());
+        const userCookie = Cookies.get("user");
         if (userCookie) {
             const userData = JSON.parse(userCookie);
             setval(userData);
@@ -25,12 +27,12 @@ const Invoice = () => {
         total += val.qnty * val.price;
     });
 
-    const  removedata=()=>{
-    window.print()
-    Cookies.remove("user")
-        navigate("/")
-    }
-    
+    const removedata = () => {
+        window.print();
+        Cookies.remove("user");
+        navigate("/");
+    };
+
     return (
         <div>
             <div>
@@ -39,10 +41,12 @@ const Invoice = () => {
                     <div className="invoice">
                         <div className="invoice-information">
                             <p>
-                                <b>Invoice #</b>{Math.floor(Math.random() * 100000)}
+                                <b>Invoice #</b>
+                                {Math.floor(Math.random() * 100000)}
                             </p>
                             <p>
-                                <b>Created Date </b>: {currentDate.toLocaleDateString()}
+                                <b>Created Date </b>:{" "}
+                                {currentDate.toLocaleDateString()}
                             </p>
                         </div>
                         {/* logo brand invoice */}
@@ -53,9 +57,13 @@ const Invoice = () => {
                         {/* invoice head */}
                         <div className="invoice-head">
                             <div className="head client-info">
-                                <p>{val.firstname} {val.lastname}</p>
+                                <p>
+                                    {val.firstname} {val.lastname}
+                                </p>
                                 <p>{val.address}</p>
-                                <p>{val.city}-{val.postalcode}</p>
+                                <p>
+                                    {val.city}-{val.postalcode}
+                                </p>
                                 <p>+91-{val.mobile}</p>
                             </div>
                         </div>
@@ -104,7 +112,11 @@ const Invoice = () => {
                         </div>
                         <div className="d-flex invoice-footer justify-content-between align-items-center">
                             <p>Thankyou, happy shopping again</p>
-                            <button onClick={removedata} className="btn btn-success btn-sm">Download</button>
+                            <button
+                                onClick={removedata}
+                                className="btn btn-success btn-sm">
+                                Download
+                            </button>
                         </div>
                     </div>
                 </section>

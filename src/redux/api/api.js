@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { BASE_URL, DELETE_PRODUCT_CART, GET_CART, GET_PRODUCT, POST_PRODUCT_CART, UPDATE_PRODUCT_CART, USER_GET, USER_POST } from "../constant";
+import { BASE_URL, DELETE_PRODUCT_CART, GET_CART, GET_PRODUCT, POST_PRODUCT_CART, UPDATE_PRODUCT_CART} from "../constant";
 import axios from "axios";
 
 export const getproduct = createAsyncThunk('getproduct', async () => {
@@ -41,3 +41,4 @@ export const deletecart = createAsyncThunk('deletecart', (id) => {
         return id
     })
 })
+

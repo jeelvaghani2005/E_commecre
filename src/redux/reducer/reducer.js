@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { deletecart, getcart, getproduct, postproduct, updatecart } from "../api/api"
+import { deletecart, emptycart, getcart, getproduct, postproduct, updatecart } from "../api/api"
 
 const initialstate={
     isLoding:false,
@@ -15,7 +15,7 @@ const userSlice=createSlice({
 
         // get product
 
-        builder.addCase(getproduct.pending,(state,action)=>{
+        builder.addCase(getproduct.pending,(state)=>{
             state.isLoding=true
         })
 
@@ -25,13 +25,13 @@ const userSlice=createSlice({
             console.log(action);
         })
 
-        builder.addCase(getproduct.rejected,(state,action)=>{
+        builder.addCase(getproduct.rejected,(state)=>{
             state.isError=true
         })
 
 // post data
 
-        builder.addCase(postproduct.pending,(state,action)=>{
+        builder.addCase(postproduct.pending,(state)=>{
             state.isLoding=true
         })
 
@@ -40,13 +40,13 @@ const userSlice=createSlice({
             state.cart = state.cart.concat(action.payload);
         })
 
-        builder.addCase(postproduct.rejected,(state,action)=>{
+        builder.addCase(postproduct.rejected,(state)=>{
             state.isError=true
         })
 
         // get cart 
 
-        builder.addCase(getcart.pending,(state,action)=>{
+        builder.addCase(getcart.pending,(state)=>{
             state.isLoding=true
         })
 
@@ -55,14 +55,14 @@ const userSlice=createSlice({
             state.cart = action.payload.data
         })
 
-        builder.addCase(getcart.rejected,(state,action)=>{
+        builder.addCase(getcart.rejected,(state)=>{
             state.isError=true
         })
 
         // update cart 
 
         
-        builder.addCase(updatecart.pending,(state,action)=>{
+        builder.addCase(updatecart.pending,(state)=>{
             state.isLoding=true
         })
 
@@ -80,14 +80,14 @@ const userSlice=createSlice({
             });
         });
 
-        builder.addCase(updatecart.rejected,(state,action)=>{
+        builder.addCase(updatecart.rejected,(state)=>{
             state.isError=true
         })
 
 
         // delete data
 
-        builder.addCase(deletecart.pending,(state,action)=>{
+        builder.addCase(deletecart.pending,(state)=>{
             state.isLoding=true
         })
 
@@ -99,9 +99,6 @@ const userSlice=createSlice({
         builder.addCase(deletecart.rejected,(state)=>{
             state.isError=true
         })
-
-
-       
     }
 })
 
